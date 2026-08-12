@@ -1,248 +1,1609 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>GreenLoop - The Circular Eco-Hub</title>
+
     <link rel="stylesheet" href="style.css">
-    <!-- Chart.js for the compact Donut Chart -->
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
+
+
 <body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
     <nav id="navbar">
-        <div class="logo">♻️ GreenLoop</div>
-        
-        <div id="nav-links" class="hidden">
-            <div id="user-menu" class="hidden">
-                <button onclick="switchTab('user-dashboard')" class="btn-text">Dashboard</button>
-                <button onclick="switchTab('user-marketplace')" class="btn-text">Recycle Portal</button>
-                <button onclick="switchTab('user-diy')" class="btn-text">DIY Ideas</button>
-                <button onclick="switchTab('user-game')" class="btn-text">Eco Game</button>
-            </div>
-            <div id="admin-menu" class="hidden">
-                <button onclick="switchTab('admin-marketplace')" class="btn-text">Industry Portal</button>
-            </div>
+
+        <div class="logo">
+            ♻️ GreenLoop
         </div>
+
+
+        <div id="nav-links" class="hidden">
+
+            <!-- USER MENU -->
+
+            <div id="user-menu" class="hidden">
+
+                <button
+                    onclick="switchTab('user-dashboard')"
+                    class="btn-text">
+                    Dashboard
+                </button>
+
+                <button
+                    onclick="switchTab('user-marketplace')"
+                    class="btn-text">
+                    Recycle Portal
+                </button>
+
+                <button
+                    onclick="switchTab('user-waste-calculation')"
+                    class="btn-text">
+                    Waste Data
+                </button>
+
+                <button
+                    onclick="switchTab('user-village-analysis')"
+                    class="btn-text">
+                    Village Analysis
+                </button>
+
+                <button
+                    onclick="switchTab('user-diy')"
+                    class="btn-text">
+                    DIY Ideas
+                </button>
+
+                <button
+                    onclick="switchTab('user-game')"
+                    class="btn-text">
+                    Eco Game
+                </button>
+
+            </div>
+
+
+            <!-- ADMIN MENU -->
+
+            <div id="admin-menu" class="hidden">
+
+                <button
+                    onclick="switchTab('admin-marketplace')"
+                    class="btn-text">
+                    Industry Portal
+                </button>
+
+                <button
+                    onclick="switchTab('admin-waste-calculation')"
+                    class="btn-text">
+                    Waste Data
+                </button>
+
+                <button
+                    onclick="switchTab('admin-village-analysis')"
+                    class="btn-text">
+                    Village Analysis
+                </button>
+
+            </div>
+
+        </div>
+
 
         <div id="user-info" class="hidden">
+
             <span id="welcome-message"></span>
-            <button onclick="logout()" class="btn-outline">Logout</button>
+
+            <button
+                onclick="logout()"
+                class="btn-outline">
+                Logout
+            </button>
+
         </div>
+
     </nav>
 
+
+
     <main>
-        <!-- AUTHENTICATION -->
+
+
+        <!-- ================= AUTHENTICATION ================= -->
+
         <section id="auth-section" class="container">
+
             <div id="login-box" class="card auth-card">
+
                 <h2>Login to GreenLoop</h2>
+
                 <form id="login-form">
+
                     <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" id="login-username" required>
+
+                        <label>
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            id="login-username"
+                            required>
+
                     </div>
+
+
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="login-password" required>
+
+                        <label>
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="login-password"
+                            required>
+
                     </div>
-                    <button type="submit" class="btn">Login</button>
+
+
+                    <button
+                        type="submit"
+                        class="btn">
+                        Login
+                    </button>
+
                 </form>
-                <p class="toggle-text">New here? <span onclick="toggleAuth('register')">Register</span></p>
+
+
+                <p class="toggle-text">
+                    New here?
+                    <span onclick="toggleAuth('register')">
+                        Register
+                    </span>
+                </p>
+
             </div>
 
-            <div id="register-box" class="card auth-card hidden">
+
+
+            <div
+                id="register-box"
+                class="card auth-card hidden">
+
                 <h2>Create Account</h2>
+
                 <form id="register-form">
+
+
                     <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" id="reg-username" required>
+
+                        <label>
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            id="reg-username"
+                            required>
+
                     </div>
+
+
                     <div class="form-group">
-                        <label>Location (City/Area)</label>
-                        <input type="text" id="reg-location" placeholder="e.g. Downtown, Mumbai" required>
+
+                        <label>
+                            Location (Village/Area)
+                        </label>
+
+                        <input
+                            type="text"
+                            id="reg-location"
+                            placeholder="e.g. Bhimavaram"
+                            required>
+
                     </div>
+
+
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="reg-password" required>
+
+                        <label>
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="reg-password"
+                            required>
+
                     </div>
+
+
                     <div class="form-group">
-                        <label>Account Type</label>
-                        <select id="reg-role" required>
-                            <option value="User">User (Recycle & Play)</option>
-                            <option value="Admin">Admin (Industry Buyer)</option>
+
+                        <label>
+                            Account Type
+                        </label>
+
+                        <select
+                            id="reg-role"
+                            required>
+
+                            <option value="User">
+                                User
+                            </option>
+
+                            <option value="Admin">
+                                Admin
+                            </option>
+
                         </select>
+
                     </div>
-                    <button type="submit" class="btn">Register</button>
+
+
+                    <button
+                        type="submit"
+                        class="btn">
+                        Register
+                    </button>
+
                 </form>
-                <p class="toggle-text">Have an account? <span onclick="toggleAuth('login')">Login</span></p>
+
+
+                <p class="toggle-text">
+
+                    Have an account?
+
+                    <span onclick="toggleAuth('login')">
+                        Login
+                    </span>
+
+                </p>
+
             </div>
+
         </section>
 
-        <!-- ================= USER VIEWS ================= -->
-        
-        <!-- COMPACT DASHBOARD -->
-        <section id="user-dashboard" class="container view-section hidden">
+
+
+        <!-- ================================================= -->
+        <!-- USER DASHBOARD -->
+        <!-- ================================================= -->
+
+        <section
+            id="user-dashboard"
+            class="container view-section hidden">
+
             <div class="card compact-dashboard">
-                <h2 style="margin-bottom: 1rem;">Your Impact Dashboard</h2>
-                
-                <!-- Line-by-line stats -->
+
+                <h2 style="margin-bottom: 1rem;">
+                    Your Impact Dashboard
+                </h2>
+
+
                 <div class="stat-line">
-                    <span>Location:</span>
+
+                    <span>
+                        Location:
+                    </span>
+
                     <div>
-                        <strong id="stat-location">Unknown</strong>
-                        <button onclick="editLocation()" class="btn-text" style="color:var(--primary-color); font-size:0.8rem; margin-left:10px;">[Edit]</button>
+
+                        <strong id="stat-location">
+                            Unknown
+                        </strong>
+
+                        <button
+                            onclick="editLocation()"
+                            class="btn-text"
+                            style="color:var(--primary-color); font-size:0.8rem; margin-left:10px;">
+                            [Edit]
+                        </button>
+
                     </div>
-                </div>
-                <div class="stat-line">
-                    <span>Total Plastic Listed:</span>
-                    <strong id="stat-listed">0 kg</strong>
-                </div>
-                <div class="stat-line">
-                    <span>Successfully Recycled:</span>
-                    <strong id="stat-recycled">0 kg</strong>
-                </div>
-                <div class="stat-line">
-                    <span>Game High Score:</span>
-                    <strong id="stat-score">0</strong>
+
                 </div>
 
-                <!-- Compact Chart -->
-                <div style="margin-top: 1.5rem; text-align: center;">
-                    <h4>Annual Goal (100 kg)</h4>
-                    <div style="position: relative; height: 160px; width: 100%; display: flex; justify-content: center; margin-top: 10px;">
+
+                <div class="stat-line">
+
+                    <span>
+                        Total Plastic Listed:
+                    </span>
+
+                    <strong id="stat-listed">
+                        0 kg
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-line">
+
+                    <span>
+                        Successfully Recycled:
+                    </span>
+
+                    <strong id="stat-recycled">
+                        0 kg
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-line">
+
+                    <span>
+                        Game High Score:
+                    </span>
+
+                    <strong id="stat-score">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- NEW BUTTONS -->
+
+                <div
+                    class="dashboard-grid"
+                    style="margin-top:1.5rem;">
+
+                    <div class="card">
+
+                        <h3>
+                            ♻️ Waste Calculation
+                        </h3>
+
+                        <p style="margin-top:0.5rem;">
+                            Enter your household waste details
+                            and calculate your monthly waste.
+                        </p>
+
+                        <button
+                            onclick="switchTab('user-waste-calculation')"
+                            class="btn">
+                            Waste Calculation
+                        </button>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h3>
+                            🏘️ Village Waste Analysis
+                        </h3>
+
+                        <p style="margin-top:0.5rem;">
+                            View the overall waste situation
+                            of your village.
+                        </p>
+
+                        <button
+                            onclick="switchTab('user-village-analysis')"
+                            class="btn">
+                            Village Waste Analysis
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EXISTING CHART -->
+
+                <div
+                    style="margin-top:1.5rem; text-align:center;">
+
+                    <h4>
+                        Annual Goal (100 kg)
+                    </h4>
+
+                    <div
+                        style="position:relative; height:160px; width:100%; display:flex; justify-content:center; margin-top:10px;">
+
                         <canvas id="goalChart"></canvas>
+
                     </div>
-                    <p id="goal-text" style="font-size: 0.9rem; margin-top: 10px; font-weight: bold;"></p>
+
+                    <p
+                        id="goal-text"
+                        style="font-size:0.9rem; margin-top:10px; font-weight:bold;">
+                    </p>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- MARKETPLACE -->
-        <section id="user-marketplace" class="container view-section hidden">
-            <h2>Recycling Portal</h2>
+
+
+        <!-- ================================================= -->
+        <!-- USER WASTE CALCULATION -->
+        <!-- ================================================= -->
+
+        <section
+            id="user-waste-calculation"
+            class="container view-section hidden">
+
+            <h2>
+                ♻️ Household Waste Calculation
+            </h2>
+
+            <br>
+
+
             <div class="dashboard-grid">
+
+
                 <div class="card">
-                    <h3>Post Waste for Industries</h3>
-                    <form id="waste-form">
+
+                    <h3>
+                        Household Details
+                    </h3>
+
+                    <br>
+
+
+                    <form id="waste-calculation-form">
+
+
                         <div class="form-group">
-                            <label>Plastic Type:</label>
-                            <select id="plastic-type" required>
-                                <option value="PET (Bottles)">PET (Bottles)</option>
-                                <option value="HDPE (Containers)">HDPE (Containers)</option>
-                                <option value="LDPE (Bags)">LDPE (Bags)</option>
-                            </select>
+
+                            <label>
+                                Owner Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="waste-owner-name"
+                                required>
+
                         </div>
+
+
                         <div class="form-group">
-                            <label>Weight (kg):</label>
-                            <input type="number" id="plastic-weight" min="1" required>
+
+                            <label>
+                                Door Number
+                            </label>
+
+                            <input
+                                type="text"
+                                id="waste-door-number"
+                                placeholder="e.g. 12-45"
+                                required>
+
                         </div>
-                        <button type="submit" class="btn">List Waste</button>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Village
+                            </label>
+
+                            <input
+                                type="text"
+                                id="waste-village"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Address
+                            </label>
+
+                            <input
+                                type="text"
+                                id="waste-address"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Daily Waste Produced (kg)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="daily-waste"
+                                min="0"
+                                step="0.01"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Recyclable Waste (kg)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="recyclable-waste"
+                                min="0"
+                                step="0.01"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Waste That Can Be Reduced (kg)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="reducible-waste"
+                                min="0"
+                                step="0.01"
+                                required>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn">
+
+                            Calculate & Save
+
+                        </button>
+
                     </form>
+
                 </div>
+
+
+
+                <div
+                    id="waste-result"
+                    class="card hidden">
+
+                    <h3>
+                        📊 Calculation Result
+                    </h3>
+
+                    <br>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Monthly Waste
+                        </span>
+
+                        <strong id="result-monthly-waste">
+                            0 kg
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Recyclable Waste
+                        </span>
+
+                        <strong id="result-recyclable-percentage">
+                            0%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Waste Reduction
+                        </span>
+
+                        <strong id="result-reduction-percentage">
+                            0%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Remaining Waste
+                        </span>
+
+                        <strong id="result-remaining-waste">
+                            0 kg
+                        </strong>
+
+                    </div>
+
+
+                    <br>
+
+
+                    <p style="font-size:0.85rem; color:var(--text-muted);">
+
+                        Your information is stored in the
+                        GreenLoop Data Warehouse and contributes
+                        to village-level analysis.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- USER VILLAGE ANALYSIS -->
+        <!-- ================================================= -->
+
+        <section
+            id="user-village-analysis"
+            class="container view-section hidden">
+
+            <h2>
+                🏘️ Village Waste Analysis
+            </h2>
+
+            <p id="user-village-name">
+                Village Analysis
+            </p>
+
+            <br>
+
+
+            <div class="dashboard-grid">
+
+
+                <div class="card">
+
+                    <h3>
+                        Village Summary
+                    </h3>
+
+                    <br>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Total Households
+                        </span>
+
+                        <strong id="user-analysis-households">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Total Waste Produced
+                        </span>
+
+                        <strong id="user-analysis-total-waste">
+                            0 kg
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Total Recyclable Waste
+                        </span>
+
+                        <strong id="user-analysis-recyclable">
+                            0 kg
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Total Reducible Waste
+                        </span>
+
+                        <strong id="user-analysis-reducible">
+                            0 kg
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Remaining Waste
+                        </span>
+
+                        <strong id="user-analysis-remaining">
+                            0 kg
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Waste Reduction
+                        </span>
+
+                        <strong id="user-analysis-reduction">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>
+                        Waste Overview
+                    </h3>
+
+                    <div
+                        style="height:280px; position:relative;">
+
+                        <canvas
+                            id="userVillageBarChart">
+                        </canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+            <div class="card">
+
+                <h3>
+                    Waste Distribution
+                </h3>
+
+                <div
+                    style="height:300px; position:relative;">
+
+                    <canvas
+                        id="userVillagePieChart">
+                    </canvas>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- USER MARKETPLACE -->
+        <!-- ================================================= -->
+
+        <section
+            id="user-marketplace"
+            class="container view-section hidden">
+
+            <h2>
+                Recycling Portal
+            </h2>
+
+            <div class="dashboard-grid">
+
+
+                <div class="card">
+
+                    <h3>
+                        Post Waste for Industries
+                    </h3>
+
+                    <form id="waste-form">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Plastic Type:
+                            </label>
+
+                            <select id="plastic-type">
+    <option value="Plastic Bottles">Plastic Bottles</option>
+    <option value="Oil Cans">Oil Cans</option>
+    <option value="Shampoo & Detergent Bottles">Shampoo & Detergent Bottles</option>
+    <option value="Food Containers">Food Containers</option>
+    <option value="Plastic Bags">Plastic Bags</option>
+    <option value="Plastic Cups">Plastic Cups</option>
+    <option value="Milk Containers">Milk Containers</option>
+    <option value="Bottle Caps">Bottle Caps</option>
+    <option value="Food Packaging">Food Packaging</option>
+    <option value="Other Plastic">Other Plastic</option>
+</select>
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Weight (kg):
+                            </label>
+
+                            <input
+                                type="number"
+                                id="plastic-weight"
+                                min="1"
+                                required>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn">
+                            List Waste
+                        </button>
+
+                    </form>
+
+                </div>
+
+
                 <div class="card table-container">
-                    <h3>My Listed Lots</h3>
+
+                    <h3>
+                        My Listed Lots
+                    </h3>
+
                     <table>
+
                         <thead>
-                            <tr><th>ID</th><th>Type</th><th>Weight</th><th>Status</th></tr>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Type</th>
+                                <th>Weight</th>
+                                <th>Status</th>
+
+                            </tr>
+
                         </thead>
-                        <tbody id="collector-tbody"></tbody>
+
+                        <tbody
+                            id="collector-tbody">
+                        </tbody>
+
                     </table>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- DIY IDEAS -->
-        <section id="user-diy" class="container view-section hidden">
-            <h2>Upcycling & DIY Ideas</h2>
-            <p>Click on an idea to see step-by-step instructions!</p>
-            <div class="diy-grid" id="diy-container">
-                <!-- Injected via JS -->
+
+
+        <!-- ================================================= -->
+        <!-- USER DIY -->
+        <!-- ================================================= -->
+
+        <section
+            id="user-diy"
+            class="container view-section hidden">
+
+            <h2>
+                Upcycling & DIY Ideas
+            </h2>
+
+            <p>
+                Click on an idea to see step-by-step instructions!
+            </p>
+
+            <div
+                class="diy-grid"
+                id="diy-container">
             </div>
+
         </section>
 
-        <!-- ECO GAME -->
-        <section id="user-game" class="container view-section hidden">
-            <h2>Eco Segregation Game</h2>
-            <p>Drag the waste items into their correct bins to score points!</p>
+
+
+        <!-- ================================================= -->
+        <!-- USER GAME -->
+        <!-- ================================================= -->
+
+        <section
+            id="user-game"
+            class="container view-section hidden">
+
+            <h2>
+                Eco Segregation Game
+            </h2>
+
+            <p>
+                Drag the waste items into their correct bins
+                to score points!
+            </p>
+
+
             <div class="card game-board">
-                <div class="score-board">Score: <span id="game-score">0</span></div>
-                
-                <div class="items-area" id="items-area">
-                    <!-- Items generated by JS -->
+
+                <div class="score-board">
+
+                    Score:
+                    <span id="game-score">
+                        0
+                    </span>
+
                 </div>
+
+
+                <div
+                    class="items-area"
+                    id="items-area">
+                </div>
+
 
                 <div class="bins-area">
-                    <div class="bin wet-bin" id="bin-wet">Wet Waste</div>
-                    <div class="bin dry-bin" id="bin-dry">Dry/Plastic</div>
-                    <div class="bin hazard-bin" id="bin-hazard">Hazardous</div>
+
+                    <div
+                        class="bin wet-bin"
+                        id="bin-wet">
+
+                        Wet Waste
+
+                    </div>
+
+
+                    <div
+                        class="bin dry-bin"
+                        id="bin-dry">
+
+                        Dry/Plastic
+
+                    </div>
+
+
+                    <div
+                        class="bin hazard-bin"
+                        id="bin-hazard">
+
+                        Hazardous
+
+                    </div>
+
                 </div>
-                <button class="btn btn-outline" onclick="resetGame()" style="background: var(--primary-color); margin-top:20px;">Reset Game</button>
+
+
+                <button
+                    class="btn btn-outline"
+                    onclick="resetGame()"
+                    style="background:var(--primary-color); margin-top:20px;">
+
+                    Reset Game
+
+                </button>
+
             </div>
+
         </section>
 
-        <!-- ================= ADMIN VIEWS ================= -->
-        <section id="admin-marketplace" class="container view-section hidden">
-            <h2>Industry Portal - Marketplace</h2>
-            
-            <!-- NEW: Filter Section -->
-            <div class="card" style="margin-bottom: 1rem; padding: 1rem;">
-                <h4 style="margin-bottom: 0.5rem;">Filter Available Lots</h4>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <select id="filter-type" class="filter-input" onchange="renderAdminMarketplace()">
-                        <option value="All">All Material Types</option>
-                        <option value="PET (Bottles)">PET (Bottles)</option>
-                        <option value="HDPE (Containers)">HDPE (Containers)</option>
-                        <option value="LDPE (Bags)">LDPE (Bags)</option>
+
+
+        <!-- ================================================= -->
+        <!-- ADMIN MARKETPLACE -->
+        <!-- ================================================= -->
+
+        <section
+            id="admin-marketplace"
+            class="container view-section hidden">
+
+            <h2>
+                Industry Portal - Marketplace
+            </h2>
+
+
+            <div
+                class="card"
+                style="margin-bottom:1rem; padding:1rem;">
+
+                <h4>
+                    Filter Available Lots
+                </h4>
+
+
+                <div
+                    style="display:flex; gap:1rem; flex-wrap:wrap;">
+
+                   <select id="filter-type">
+    <option value="All">All Types</option>
+    <option value="Plastic Bottles">Plastic Bottles</option>
+    <option value="Oil Cans">Oil Cans</option>
+    <option value="Shampoo & Detergent Bottles">Shampoo & Detergent Bottles</option>
+    <option value="Food Containers">Food Containers</option>
+    <option value="Plastic Bags">Plastic Bags</option>
+    <option value="Plastic Cups">Plastic Cups</option>
+    <option value="Milk Containers">Milk Containers</option>
+    <option value="Bottle Caps">Bottle Caps</option>
+    <option value="Food Packaging">Food Packaging</option>
+    <option value="Other Plastic">Other Plastic</option>
+</select>
+
+                    <select
+                        id="filter-weight"
+                        class="filter-input"
+                        onchange="renderAdminMarketplace()">
+
+                        <option value="0">
+                            Any Weight
+                        </option>
+
+                        <option value="10">
+                            10+ kg
+                        </option>
+
+                        <option value="50">
+                            50+ kg
+                        </option>
+
+                        <option value="100">
+                            100+ kg
+                        </option>
+
                     </select>
-                    <select id="filter-weight" class="filter-input" onchange="renderAdminMarketplace()">
-                        <option value="0">Any Weight</option>
-                        <option value="10">10+ kg</option>
-                        <option value="50">50+ kg</option>
-                        <option value="100">100+ kg</option>
+
+
+                    <select
+                        id="filter-distance"
+                        class="filter-input"
+                        onchange="renderAdminMarketplace()">
+
+                        <option value="9999">
+                            Any Distance
+                        </option>
+
+                        <option value="10">
+                            Under 10 km
+                        </option>
+
+                        <option value="25">
+                            Under 25 km
+                        </option>
+
+                        <option value="50">
+                            Under 50 km
+                        </option>
+
                     </select>
-                    <select id="filter-distance" class="filter-input" onchange="renderAdminMarketplace()">
-                        <option value="9999">Any Distance</option>
-                        <option value="10">Under 10 km</option>
-                        <option value="25">Under 25 km</option>
-                        <option value="50">Under 50 km</option>
-                    </select>
+
                 </div>
+
             </div>
 
-            <div class="card table-container" style="margin-bottom: 2rem;">
-                <h3>Available Raw Materials</h3>
+
+            <div
+                class="card table-container"
+                style="margin-bottom:2rem;">
+
+                <h3>
+                    Available Raw Materials
+                </h3>
+
                 <table>
+
                     <thead>
-                        <tr><th>ID</th><th>Location</th><th>Distance</th><th>Type</th><th>Weight</th><th>Action</th></tr>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Location</th>
+                            <th>Distance</th>
+                            <th>Type</th>
+                            <th>Weight</th>
+                            <th>Action</th>
+
+                        </tr>
+
                     </thead>
-                    <tbody id="industry-tbody"></tbody>
+
+                    <tbody id="industry-tbody">
+                    </tbody>
+
                 </table>
+
             </div>
+
 
             <div class="card table-container">
-                <h3>Our Claimed Lots</h3>
+
+                <h3>
+                    Our Claimed Lots
+                </h3>
+
                 <table>
+
                     <thead>
-                        <tr><th>ID</th><th>From User</th><th>Location</th><th>Type</th><th>Weight</th></tr>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>From User</th>
+                            <th>Location</th>
+                            <th>Type</th>
+                            <th>Weight</th>
+
+                        </tr>
+
                     </thead>
-                    <tbody id="claimed-tbody"></tbody>
+
+                    <tbody id="claimed-tbody">
+                    </tbody>
+
                 </table>
+
             </div>
+
         </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- ADMIN WASTE DATA -->
+        <!-- ================================================= -->
+
+        <section
+            id="admin-waste-calculation"
+            class="container view-section hidden">
+
+            <h2>
+                ♻️ Household Waste Data
+            </h2>
+
+            <p>
+                All household waste records stored in the
+                GreenLoop Data Warehouse.
+            </p>
+
+            <br>
+
+
+            <div class="card">
+
+                <h3>
+                    Data Warehouse Overview
+                </h3>
+
+                <br>
+
+
+                <div class="dashboard-grid">
+
+                    <div>
+
+                        <div class="stat-line">
+
+                            <span>
+                                Households
+                            </span>
+
+                            <strong
+                                id="warehouse-households">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="stat-line">
+
+                            <span>
+                                Villages
+                            </span>
+
+                            <strong
+                                id="warehouse-villages">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="stat-line">
+
+                            <span>
+                                Waste Records
+                            </span>
+
+                            <strong
+                                id="warehouse-waste-records">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="stat-line">
+
+                            <span>
+                                Marketplace Transactions
+                            </span>
+
+                            <strong
+                                id="warehouse-inventory-records">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+            <div class="card">
+
+                <h3>
+                    Household Records
+                </h3>
+
+                <br>
+
+
+                <div
+                    style="display:flex; gap:1rem; flex-wrap:wrap;">
+
+                    <select
+                        id="admin-household-village-filter"
+                        class="filter-input"
+                        onchange="renderAdminHouseholdRecords()">
+
+                        <option value="All">
+                            All Villages
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <br>
+
+
+                <div style="overflow-x:auto;">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Owner</th>
+                                <th>Door No.</th>
+                                <th>Village</th>
+                                <th>Address</th>
+                                <th>Daily</th>
+                                <th>Monthly</th>
+                                <th>Recyclable</th>
+                                <th>Reducible</th>
+                                <th>Remaining</th>
+                                <th>Recycle %</th>
+                                <th>Reduction %</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody
+                            id="admin-household-tbody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- ADMIN VILLAGE ANALYSIS -->
+        <!-- ================================================= -->
+
+        <section
+            id="admin-village-analysis"
+            class="container view-section hidden">
+
+            <h2>
+                🏘️ Village-Wise Waste Analysis
+            </h2>
+
+            <p>
+                Analyze household waste using data stored
+                in the GreenLoop Data Warehouse.
+            </p>
+
+            <br>
+
+
+            <div class="card">
+
+                <div
+                    style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+
+                    <strong>
+                        Select Village:
+                    </strong>
+
+                    <select
+                        id="admin-analysis-village"
+                        class="filter-input"
+                        onchange="renderAdminVillageAnalysis()">
+
+                        <option value="All">
+                            All Villages
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+            <div class="dashboard-grid">
+
+
+                <div class="card">
+
+                    <h3>
+                        Village Summary
+                    </h3>
+
+                    <br>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Total Households
+                        </span>
+
+                        <strong
+                            id="admin-analysis-households">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Total Waste
+                        </span>
+
+                        <strong
+                            id="admin-analysis-total-waste">
+                            0 kg
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Recyclable Waste
+                        </span>
+
+                        <strong
+                            id="admin-analysis-recyclable">
+                            0 kg
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Reducible Waste
+                        </span>
+
+                        <strong
+                            id="admin-analysis-reducible">
+                            0 kg
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Remaining Waste
+                        </span>
+
+                        <strong
+                            id="admin-analysis-remaining">
+                            0 kg
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-line">
+
+                        <span>
+                            Waste Reduction
+                        </span>
+
+                        <strong
+                            id="admin-analysis-reduction">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>
+                        Waste Comparison
+                    </h3>
+
+                    <div
+                        style="height:280px; position:relative;">
+
+                        <canvas
+                            id="adminVillageBarChart">
+                        </canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+            <div class="card">
+
+                <h3>
+                    Village Waste Distribution
+                </h3>
+
+                <div
+                    style="height:300px; position:relative;">
+
+                    <canvas
+                        id="adminVillagePieChart">
+                    </canvas>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
     </main>
 
-    <!-- DIY Modal -->
-    <!-- DIY Modal -->
-    <div id="diy-modal" class="modal hidden">
+
+
+    <!-- ================= DIY MODAL ================= -->
+
+    <div
+        id="diy-modal"
+        class="modal hidden">
+
         <div class="modal-content card">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modal-img" src="" alt="DIY Project" class="modal-hero-img">
-            <h2 id="modal-title">Title</h2>
-            <h4>Instructions:</h4>
-            <ol id="modal-instructions" class="step-list"></ol>
-            <!-- Added YouTube Link Button -->
-            <a id="modal-link" href="#" target="_blank" class="btn" style="display: block; text-align: center; text-decoration: none; margin-top: 1rem;">Watch YouTube Tutorial</a>
+
+            <span
+                class="close-btn"
+                onclick="closeModal()">
+                &times;
+            </span>
+
+            <img
+                id="modal-img"
+                src=""
+                alt="DIY Project"
+                class="modal-hero-img">
+
+            <h2 id="modal-title">
+                Title
+            </h2>
+
+            <h4>
+                Instructions:
+            </h4>
+
+            <ol
+                id="modal-instructions"
+                class="step-list">
+            </ol>
+
+            <a
+                id="modal-link"
+                href="#"
+                target="_blank"
+                class="btn"
+                style="display:block; text-align:center; text-decoration:none; margin-top:1rem;">
+
+                Watch YouTube Tutorial
+
+            </a>
+
         </div>
+
     </div>
+
+
+
     <script src="script.js"></script>
+
 </body>
+
 </html>

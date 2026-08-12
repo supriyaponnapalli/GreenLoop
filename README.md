@@ -1,36 +1,36 @@
+# GreenLoop – The Circular Eco-Hub
 
-# ♻️ GreenLoop: The Circular Eco-Hub (Frontend Prototype)
+GreenLoop is a web-based waste management platform that helps households, villages, and industries manage plastic waste, calculate waste generation, and promote recycling.
 
-GreenLoop is a web-based prototype developed as a Community Service Project to combat plastic pollution. It demonstrates the user interface and basic workflow of a localized B2B marketplace that connects garbage collectors directly with the recycling industry.
+## Features
 
-**Note:** This is currently a frontend-only prototype. It does not use a live backend server or database. All data, user accounts, and transactions are simulated and stored locally in the browser.
+- User and Admin Login
+- Plastic Recycling Portal
+- Household Waste Calculation
+- Village-wise Waste Analysis
+- Waste Data Visualization
+- Industry Portal
+- Waste Listing and Claiming
+- Eco Segregation Game
+- Upcycling & DIY Ideas
+- Household Waste Data Warehouse
+- Location/Village-based Analysis
 
-## 🚀 Prototype Features
+## Technologies Used
 
-### 👤 User Portal (Collectors & Citizens)
-* **Waste Marketplace:** Users can log simulated batches of segregated plastic waste (PET, HDPE, LDPE).
-* **Impact Dashboard:** A tracking dashboard that reads the user's simulated history to calculate total waste listed and recycled, visualized with Chart.js.
-* **Eco Segregation Game:** An interactive HTML5 drag-and-drop game designed to educate users on proper waste sorting.
-* **DIY & Upcycling Hub:** A static gallery of practical, step-by-step DIY projects with integrated YouTube tutorial links.
+- HTML5
+- CSS3
+- JavaScript
+- Chart.js
+- Local Storage
 
-### 🏭 Admin Portal (Recycling Industries)
-* **Simulated Procurement Feed:** A dashboard where admin users can view the mock waste data submitted by users on the same machine.
-* **Data Filtering:** Client-side filtering to sort available plastic by grade, minimum weight, and estimated distance.
-* **Claim Workflow:** Admins can digitally "claim" waste lots, which updates the lot's status across the application's local state.
+## Project Structure
 
-## 🛠️ Tech Stack
+```text
+GreenLoop/
+│
+├── index.html
+├── style.css
+├── script.js
 
-This project was built to demonstrate core UI/UX and client-side logic without requiring server deployment. 
-
-* **Frontend:** HTML5, CSS3, Vanilla JavaScript
-* **Data Visualization:** Chart.js
-* **Data Simulation:** Browser `localStorage` (used to mock a relational database for users and inventory)
-* **Location Logic:** A deterministic hashing algorithm to generate consistent mock distances based on user input strings.
-
-## 💻 How to Run Locally
-
-Because this relies purely on client-side technologies, no local server installation is required.
-
-1. Clone this repository:
-   ```bash
-   git clone [https://github.com/supriyaponnapalli/GreenLoop.git](https://github.com/supriyaponnapalli/GreenLoop.git)
+```
